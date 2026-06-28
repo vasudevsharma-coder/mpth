@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahadev PowerTools & Hardware | Premium Tools & Equipment — Bilaspur, Mandir Chowk</title>
+    <meta name="description" content="Mahadev PowerTools & Hardware – Your one-stop shop for power tools, hardware, repair services, welding supplies, safety equipment, construction machines in Bilaspur, Mandir Chowk. Quality products at the right price." />
+    <meta name="keywords" content="power tools, hardware shop, welding supply, machine repair, safety equipment, construction equipment, Bilaspur, Mandir Chowk, tool wholesaler, powertools retailer, drilling equipment" />
+    <meta name="author" content="Mahadev PowerTools & Hardware" />
+    <meta property="og:title" content="Mahadev PowerTools & Hardware" />
+    <meta property="og:description" content="Your one-stop shop for all hardware needs in Bilaspur, Mandir Chowk. Quality tools and machines at the right price." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* Prevent FOUC (Flash of Unstyled Content) during Vite load */
+        body { margin: 0; background-color: #06060b; }
+        .preloader {
+            position: fixed; inset: 0; z-index: 99999;
+            background: radial-gradient(circle at center, #16162b 0%, #06060b 100%);
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+        }
+        .preloader.hidden { opacity: 0; visibility: hidden; }
+        .preloader-particles { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.15; }
+        
+        .preloader-content { text-align: center; position: relative; z-index: 2; }
+        .preloader-logo-img { 
+            display: block; margin: 0 auto 24px auto;
+            height: 60px; width: auto;
+            background: rgba(255,255,255,0.9); border-radius: 12px; padding: 8px 16px;
+            animation: pulse-glow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes pulse-glow {
+            0% { transform: scale(0.95); box-shadow: 0 10px 30px rgba(249,115,22,0.1); }
+            100% { transform: scale(1.05); box-shadow: 0 10px 40px rgba(249,115,22,0.6); }
+        }
+        
+        .preloader-text { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 900; color: #ffffff; letter-spacing: 4px; margin-bottom: 6px; }
+        .preloader-subtext { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: #8888a8; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 32px; }
+        
+        .preloader-bar-container { width: 280px; margin: 0 auto; }
+        .preloader-bar { width: 100%; height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; position: relative; }
+        .preloader-progress { width: 0%; height: 100%; background: linear-gradient(90deg, #fb923c, #ef4444); box-shadow: 0 0 12px #f97316; transition: width 0.1s ease; }
+        
+        /* Hide content until CSS loads */
+        .navbar, .hero, .services, .about, .contact, .footer { opacity: 0; }
+    </style>
+</head>
+<body>
+    <!-- Canvas Background -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Cursor Follower -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-particles"></div>
+        <div class="preloader-content">
+            <img src="/logo.png" alt="Mahadev PowerTools" class="preloader-logo-img" />
+            <div class="preloader-text">MAHADEV</div>
+            <div class="preloader-subtext">Preparing Experience...</div>
+            <div class="preloader-bar-container">
+                <div class="preloader-bar">
+                    <div class="preloader-progress" id="preloaderProgress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <div class="logo-mark" style="display:flex; align-items:center;">
+                    <img src="/logo.png" alt="Mahadev PowerTools & Hardware" class="brand-logo" />
+                    <span class="brand-logo-text">MAHADEV</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#services" class="nav-link" data-section="services">Services</a></li>
+                <li><a href="#gallery" class="nav-link" data-section="gallery">Gallery</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#testimonials" class="nav-link" data-section="testimonials">Reviews</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+                <li><a href="#" class="nav-link nav-feedback-link" id="navFeedbackBtn">Feedback ⭐️</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://www.instagram.com/mahadevpowertools_hardware" target="_blank" class="nav-social-icon" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="tel:9179511800" class="nav-phone">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>9179511800</span>
+                </a>
+                <a href="https://wa.me/919179511800" target="_blank" class="nav-cta">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-media">
+            <img src="/real-customer.png" alt="Mahadev PowerTools & Hardware - Premium Tools Collection" class="hero-img real-photo real-photo-enhance" />
+            <div class="hero-media-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-pulse"></span>
+                <span>🏆 Trusted Hardware Partner in Bilaspur</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-line hero-line-1">MAHADEV</span>
+                <span class="hero-line hero-line-2">POWER<span class="hero-gradient">TOOLS</span></span>
+                <span class="hero-line hero-line-3">&amp; HARDWARE</span>
+            </h1>
+            <p class="hero-desc">
+                Your one-stop shop for <strong>premium power tools</strong>, industrial equipment, safety gear & expert repair services. Every tool you need — under one roof.
+            </p>
+            <div class="hero-cta-group">
+                <a href="https://wa.me/919179511800" target="_blank" class="btn btn-primary btn-lg">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Chat on WhatsApp
+                </a>
+                <a href="tel:9179511800" class="btn btn-glass btn-lg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Call Now
+                </a>
+                <a href="#services" class="btn btn-ghost btn-lg">
+                    Explore Services ↓
+                </a>
+            </div>
+        </div>
+        <div class="hero-stats-bar">
+            <div class="hero-stat">
+                <span class="hero-stat-num" data-count="500">0</span><span class="hero-stat-plus">+</span>
+                <span class="hero-stat-label">Products Available</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-num" data-count="1000">0</span><span class="hero-stat-plus">+</span>
+                <span class="hero-stat-label">Happy Customers</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-num" data-count="14">0</span><span class="hero-stat-plus"></span>
+                <span class="hero-stat-label">Service Categories</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-num" data-count="100">0</span><span class="hero-stat-plus">%</span>
+                <span class="hero-stat-label">Genuine Products</span>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="hero-scroll-line"></div>
+            <span>SCROLL</span>
+        </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <section class="marquee-banner">
+        <div class="marquee-track-fast">
+            <div class="marquee-items">
+                <span>⚡ POWERTOOLS</span><span>🔧 HARDWARE</span><span>🔥 WELDING</span><span>🦺 SAFETY GEAR</span><span>🏗️ CONSTRUCTION</span><span>🛠️ REPAIR</span><span>📦 WHOLESALE</span><span>🏭 INDUSTRIAL</span><span>🕳️ DRILLING</span><span>🛒 RETAIL</span>
+                <span>⚡ POWERTOOLS</span><span>🔧 HARDWARE</span><span>🔥 WELDING</span><span>🦺 SAFETY GEAR</span><span>🏗️ CONSTRUCTION</span><span>🛠️ REPAIR</span><span>📦 WHOLESALE</span><span>🏭 INDUSTRIAL</span><span>🕳️ DRILLING</span><span>🛒 RETAIL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-eyebrow">OUR EXPERTISE</span>
+                <h2 class="section-title">Complete Hardware <br/><span class="gradient-text">Solutions</span></h2>
+                <p class="section-desc">From home repairs to industrial projects — we supply, service, and support every step of the way.</p>
+            </div>
+            <div class="services-bento">
+                <!-- Large Card -->
+                <div class="bento-card bento-large" data-service="powertools">
+                    <img src="/real-tools.png" alt="Power Tools Collection" class="bento-img real-photo real-photo-enhance" />
+                    <div class="bento-overlay"></div>
+                    <div class="bento-content">
+                        <span class="bento-tag">Featured</span>
+                        <h3>PowerTools Shop & Wholesale</h3>
+                        <p>Complete range of power tools — drills, grinders, cutters, sanders. Available retail and wholesale at best prices.</p>
+                    </div>
+                </div>
+                <!-- Medium Cards -->
+                <div class="bento-card bento-medium" data-service="welding">
+                    <img src="/real-front-stock.png" alt="Welding Supplies & Service" class="bento-img real-photo real-photo-enhance" />
+                    <div class="bento-overlay"></div>
+                    <div class="bento-content">
+                        <span class="bento-tag">Service</span>
+                        <h3>Welding Supply Shop</h3>
+                        <p>Professional welding equipment, rods, masks, and accessories for every welding need.</p>
+                    </div>
+                </div>
+                <div class="bento-card bento-medium" data-service="safety">
+                    <img src="/real-back.png" alt="Safety Equipment" class="bento-img real-photo real-photo-enhance" />
+                    <div class="bento-overlay"></div>
+                    <div class="bento-content">
+                        <span class="bento-tag">Essential</span>
+                        <h3>Safety Equipment Supplier</h3>
+                        <p>Industrial PPE — helmets, goggles, gloves, harnesses, vests from trusted brands.</p>
+                    </div>
+                </div>
+                <!-- Small Cards Row -->
+                <div class="bento-card bento-small" data-service="repair">
+                    <div class="bento-icon">🔧</div>
+                    <h3>Repair Service</h3>
+                    <p>Expert tool & machine repair</p>
+                </div>
+                <div class="bento-card bento-small" data-service="construction">
+                    <div class="bento-icon">🏗️</div>
+                    <h3>Construction Machines</h3>
+                    <p>Mixers, cutters, compactors</p>
+                </div>
+                <div class="bento-card bento-small" data-service="drilling">
+                    <div class="bento-icon">🕳️</div>
+                    <h3>Drilling Equipment</h3>
+                    <p>Professional drilling tools</p>
+                </div>
+                <div class="bento-card bento-small" data-service="industrial">
+                    <div class="bento-icon">🏭</div>
+                    <h3>Industrial Supplies</h3>
+                    <p>Factory & workshop equipment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section with Image Showcase -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-eyebrow">OUR PRODUCTS</span>
+                <h2 class="section-title">Quality You Can <span class="gradient-text">Trust</span></h2>
+                <p class="section-desc">Browse through our extensive collection of premium tools, equipment, and industrial supplies.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-item-tall">
+                    <img src="/real-back.png" alt="Power Tools Display" class="real-photo real-photo-enhance" />
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-tag">Store Layout</span>
+                        <h3>Complete Range</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/real-front-stock.png" alt="Welding Services" class="real-photo real-photo-enhance" />
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-tag">Stock</span>
+                        <h3>Huge Inventory</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/real-front-stock.png" alt="Safety Equipment" class="real-photo real-photo-enhance" />
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-tag">Safety</span>
+                        <h3>Complete PPE Range</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-item-wide">
+                    <img src="/real-front-empty.png" alt="Construction Equipment" class="real-photo real-photo-enhance" />
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-tag">Storefront</span>
+                        <h3>Welcome In</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/real-tools.png" alt="Tools Collection" class="real-photo real-photo-enhance" />
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-tag">Tools</span>
+                        <h3>Top Brands</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/real-customer.png" alt="Our Store" class="real-photo real-photo-enhance" />
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-tag">Service</span>
+                        <h3>Happy Customers</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-image-group">
+                    <div class="about-img-main">
+                        <img src="/real-front-empty.png" alt="Mahadev PowerTools & Hardware Store" class="real-photo real-photo-enhance" />
+                    </div>
+                    <div class="about-img-float">
+                        <img src="/real-stock.png" alt="Tools Collection" class="real-photo real-photo-enhance" />
+                    </div>
+                    <div class="about-experience-badge">
+                        <span class="exp-num">14+</span>
+                        <span class="exp-label">Service<br>Categories</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <span class="section-eyebrow">ABOUT US</span>
+                    <h2 class="section-title">Your Hardware <span class="gradient-text">Partner</span></h2>
+                    <div class="about-desc">
+                        <p>Welcome to <strong>MAHADEV POWERTOOLS & HARDWARE</strong>, your one-stop shop for all hardware needs in Bilaspur, Mandir Chowk. From basic hand tools to powerful machines, we offer quality products at the right price for every small repair or big project. Our friendly team is always ready to help you choose the right tools with confidence.</p>
+                    </div>
+                    <div class="about-desc-hindi">
+                        <p><strong>MAHADEV POWERTOOLS & HARDWARE</strong> में आपका स्वागत है – Bilaspur, Mandir Chowk में आपकी सभी हार्डवेयर जरूरतों की एक ही जगह। यहाँ आपको छोटे-बड़े हर काम के लिए बेहतरीन क्वालिटी के टूल्स और मशीनें सही दाम पर मिलेंगी। हमारी मददगार टीम हमेशा तैयार है, ताकि आप सही सामान लेकर भरोसे के साथ अपना काम पूरा कर सकें। 🔧✨</p>
+                    </div>
+                    <div class="about-features-grid">
+                        <div class="about-feature">
+                            <div class="feature-icon-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                            <div>
+                                <strong>Genuine Products</strong>
+                                <span>100% authentic from trusted brands</span>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+                            </div>
+                            <div>
+                                <strong>Best Prices</strong>
+                                <span>Competitive wholesale & retail rates</span>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div>
+                                <strong>Expert Team</strong>
+                                <span>Knowledgeable & friendly staff</span>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div>
+                                <strong>One-Stop Shop</strong>
+                                <span>Everything under one roof</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Horizontal Scroll -->
+    <section class="categories-showcase">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-eyebrow">CATEGORIES</span>
+                <h2 class="section-title">We Deal In <span class="gradient-text">Everything</span></h2>
+            </div>
+        </div>
+        <div class="categories-scroll-wrapper">
+            <div class="categories-scroll" id="categoriesScroll">
+                <div class="cat-card">
+                    <div class="cat-card-icon">🔨</div>
+                    <h3>Hardware Shop</h3>
+                    <p>Complete range of hardware supplies for every need.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🔧</div>
+                    <h3>Repair Service</h3>
+                    <p>Expert repair for all power tools and machinery.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">📦</div>
+                    <h3>Tools Wholesaler</h3>
+                    <p>Bulk orders at wholesale pricing for businesses.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🔥</div>
+                    <h3>Welding Supply</h3>
+                    <p>Professional welding gear and consumables.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">⚙️</div>
+                    <h3>Machine Repair</h3>
+                    <p>Specialized industrial machine servicing.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🦺</div>
+                    <h3>Safety Equipment</h3>
+                    <p>Industrial PPE and safety gear supplier.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🏗️</div>
+                    <h3>Construction Machines</h3>
+                    <p>Dealer for heavy construction equipment.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🕳️</div>
+                    <h3>Drilling Equipment</h3>
+                    <p>Professional drilling tools and accessories.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🏭</div>
+                    <h3>Industrial Equipment</h3>
+                    <p>Factory and workshop machinery supplies.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🏢</div>
+                    <h3>Construction Supplies</h3>
+                    <p>Complete construction equipment sourcing.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">⚡</div>
+                    <h3>PowerTools Shop</h3>
+                    <p>Premium power tools from top brands.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">📦</div>
+                    <h3>PowerTools Wholesale</h3>
+                    <p>Bulk power tool orders at best prices.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🛒</div>
+                    <h3>PowerTools Retail</h3>
+                    <p>Individual power tool purchases.</p>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-card-icon">🛠️</div>
+                    <h3>PowerTools Repairing</h3>
+                    <p>Expert power tool repair and servicing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-eyebrow">TESTIMONIALS</span>
+                <h2 class="section-title">What They <span class="gradient-text">Say</span></h2>
+                <p class="section-desc">🏆 Trusted Hardware Partner in Bilaspur and beyond.</p>
+            </div>
+            <div class="swiper testimonials-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text">"Best hardware shop in the area! Great quality tools at reasonable prices. The staff is very helpful and guided me to pick the right welding machine for my workshop."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">R</div>
+                                <div>
+                                    <strong>Rajesh Kumar</strong>
+                                    <span>Contractor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text">"बहुत अच्छी दुकान है! यहाँ सभी तरह के टूल्स मिलते हैं और दाम भी सही हैं। मेरा ड्रिल मशीन यहीं से रिपेयर हुआ, बिल्कुल नई जैसी चलने लगी।"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">S</div>
+                                <div>
+                                    <strong>Suresh Patel</strong>
+                                    <span>Workshop Owner</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text">"One-stop shop for all construction needs. I bought safety helmets, drill machines, and welding rods — all genuine products. Highly recommended for contractors!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">A</div>
+                                <div>
+                                    <strong>Amit Singh</strong>
+                                    <span>Builder</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text">"Mahadev PowerTools has the best collection of industrial equipment in Mandir Chowk. Great prices for wholesale orders. The team really knows their products!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">P</div>
+                                <div>
+                                    <strong>Priya Sharma</strong>
+                                    <span>Factory Manager</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text">"महादेव पावरटूल्स से सामान लेकर बहुत खुश हूँ। सेफ्टी इक्विपमेंट की पूरी रेंज है, और भाव भी बाज़ार से कम। बहुत भरोसेमंद दुकान!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">V</div>
+                                <div>
+                                    <strong>Vikram Yadav</strong>
+                                    <span>Electrician</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="cta-bg-pattern"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your <span class="gradient-text">Project?</span></h2>
+                <p>Get the best tools at the best prices. Contact us today for wholesale quotes, product inquiries, or repair bookings.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/919179511800" target="_blank" class="btn btn-primary btn-lg">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        WhatsApp Us Now
+                    </a>
+                    <a href="tel:9179511800" class="btn btn-glass btn-lg">
+                        📞 Call: 9179511800
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-eyebrow">REACH OUT</span>
+                <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+                <p class="section-desc">Visit our store or connect with us instantly through any channel!</p>
+            </div>
+            <div class="contact-layout">
+                <div class="contact-info-grid">
+                    <a href="tel:9179511800" class="contact-tile" id="contact-phone">
+                        <div class="contact-tile-icon tile-phone">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <h3>Phone</h3>
+                        <p class="contact-tile-value">9179511800</p>
+                        <span class="contact-tile-action">Tap to Call →</span>
+                    </a>
+                    <a href="https://wa.me/919179511800" target="_blank" class="contact-tile" id="contact-whatsapp">
+                        <div class="contact-tile-icon tile-whatsapp">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p class="contact-tile-value">+91 9179511800</p>
+                        <span class="contact-tile-action">Message Us →</span>
+                    </a>
+                    <a href="sms:9179511800" class="contact-tile" id="contact-sms">
+                        <div class="contact-tile-icon tile-sms">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <h3>SMS</h3>
+                        <p class="contact-tile-value">9179511800</p>
+                        <span class="contact-tile-action">Send SMS →</span>
+                    </a>
+                    <div class="contact-tile contact-tile-location" id="contact-location">
+                        <div class="contact-tile-icon tile-location">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <h3>Our Location</h3>
+                        <p class="contact-tile-value">Bilaspur, Mandir Chowk</p>
+                        <p class="contact-tile-sub">Infinity Heights, Between Biknare Sweets & Laxmi Medical Store</p>
+                        <a href="https://maps.google.com/?q=Bilaspur+Mandir+Chowk+Infinity+Heights" target="_blank" class="contact-tile-action">Get Directions →</a>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <div class="map-card">
+                        <div class="map-iframe-wrapper">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.5!2d81.63!3d23.16!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDA5JzM2LjAiTiA4McKwMzcnNDguMCJF!5e0!3m2!1sen!2sin!4v1" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Mahadev PowerTools & Hardware Location Map">
+                            </iframe>
+                        </div>
+                        <div class="map-info-bar">
+                            <div class="map-info-text">
+                                <strong>📍 Mahadev PowerTools & Hardware</strong>
+                                <span>Bilaspur, Mandir Chowk, Infinity Heights</span>
+                            </div>
+                            <a href="https://maps.google.com/?q=Bilaspur+Mandir+Chowk+Infinity+Heights" target="_blank" class="btn btn-primary btn-sm">
+                                Open Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/919179511800" target="_blank" class="whatsapp-fab" id="whatsappFab" aria-label="Chat on WhatsApp">
+        <div class="whatsapp-fab-ring"></div>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="whatsapp-fab-label">Chat with us!</span>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#home" class="nav-logo footer-logo-link" style="display:flex; align-items:center;">
+                        <div class="logo-mark">
+                            <img src="/logo.png" alt="Mahadev PowerTools & Hardware" class="brand-logo footer-brand-logo" />
+                        </div>
+                        <span class="brand-logo-text" style="font-size: 1.5rem; margin-left: 12px;">MAHADEV</span>
+                    </a>
+                    <p class="footer-tagline-text">Your one-stop destination for quality tools, equipment, and hardware services in Bilaspur, Mandir Chowk.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/mahadevpowertools_hardware" target="_blank" class="footer-social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://wa.me/919179511800" target="_blank" class="footer-social-link" aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
+                        <a href="tel:9179511800" class="footer-social-link" aria-label="Call Us">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">PowerTools Shop</a></li>
+                        <li><a href="#services">Repair Service</a></li>
+                        <li><a href="#services">Welding Supplies</a></li>
+                        <li><a href="#services">Safety Equipment</a></li>
+                        <li><a href="#services">Construction Machines</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact-info">
+                        <li>📍 Bilaspur, Mandir Chowk, Infinity Heights</li>
+                        <li>📞 9179511800</li>
+                        <li>💬 WhatsApp: +91 9179511800</li>
+                        <li><a href="https://www.instagram.com/mahadevpowertools_hardware" target="_blank">📸 @mahadevpowertools_hardware</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Mahadev PowerTools & Hardware. All rights reserved.</p>
+                <p>Made with ❤️ in Bilaspur, Mandir Chowk | Created by <strong>VASU SHARMA</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+
+    <!-- Feedback Modal -->
+    <div class="feedback-modal-overlay" id="feedbackModal">
+        <div class="feedback-modal">
+            <button class="feedback-close" id="feedbackClose" aria-label="Close">&times;</button>
+            <div class="feedback-header">
+                <h3>Rate Your Experience</h3>
+                <p>How did we do? Select stars to rate.</p>
+            </div>
+            <div class="feedback-stars" id="feedbackStars">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <button class="btn btn-primary btn-feedback-submit" id="feedbackSubmit" disabled>Post on Google</button>
+        </div>
+    </div>
+</body>
+</html>
